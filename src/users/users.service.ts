@@ -8,12 +8,16 @@ export class UsersService {
     return 'This action adds a new user';
   }
 
-  findAll() {
-    return `This action returns all users`;
+  findByLogin(login: string) {
+    return 'This action adds a new user';
   }
 
-  findOne(id: number) {
+  findById(id: number) {
     return `This action returns a #${id} user`;
+  }
+
+  findMeny() {
+    return `This action returns all users`;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
