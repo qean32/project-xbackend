@@ -1,3 +1,3 @@
-export class CreateLikeMusiсDto {
+export class CreatePlaylistDto {
     name: string
 }

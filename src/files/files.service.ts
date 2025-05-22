@@ -6,7 +6,6 @@ import * as path from 'path'
 export class FilesService {
 
     async createFile(file): Promise<string> {
-        console.log(file)
         try {
             const fileName = Math.floor(Math.random() * 100000000).toString() + '.webp'
             const filePath = path.resolve(__dirname, '..', 'static')
@@ -19,7 +18,7 @@ export class FilesService {
             return fileName
         }
         catch {
-            throw new HttpException('no', HttpStatus.INTERNAL_SERVER_ERROR)
+            throw new HttpException('error create file', HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 }

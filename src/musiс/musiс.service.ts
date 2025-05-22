@@ -1,17 +1,25 @@
 import { Injectable } from '@nestjs/common';
-import { CreateLikeMusiсDto } from './dto/create-like-musiс.dto';
+import { AddToPlayListDto, CreateLikeMusiсDto, CreatePlaylistDto } from './dto/';
 
 @Injectable()
 export class MusiсService {
-  create(createMusiсDto: CreateLikeMusiсDto) {
+  createLike(body: CreateLikeMusiсDto) {
     return 'This action adds a new musiс';
   }
 
-  findAll() {
-    return `This action returns all musiс`;
+  deleteLike(id: number) {
+    return `This action removes a #${id} musiс`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} musiс`;
+  search(query: string) {
+    return `This action removes a # musiс`;
+  }
+
+  createPlaylist(body: CreatePlaylistDto) {
+    return 'zxc'
+  }
+
+  addToPlaylist(body: AddToPlayListDto) {
+    return 'zxc'
   }
 }

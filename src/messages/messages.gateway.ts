@@ -5,7 +5,7 @@ import { UpdateMessageDto } from './dto/update-message.dto';
 
 @WebSocketGateway()
 export class MessagesGateway {
-  constructor(private readonly messagesService: MessagesService) {}
+  constructor(private readonly messagesService: MessagesService) { }
 
   @SubscribeMessage('createMessage')
   create(@MessageBody() createMessageDto: CreateMessageDto) {

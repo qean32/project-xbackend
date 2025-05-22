@@ -31,6 +31,7 @@ model Message {
   id Int @id @default(autoincrement())
 
   hashMessage String
+  idRead      Boolean
 }
 
 model Chat {
