@@ -3,23 +3,23 @@ import { AddToPlayListDto, CreateLikeMusiсDto, CreatePlaylistDto } from './dto/
 
 @Injectable()
 export class MusiсService {
-  createLike(body: CreateLikeMusiсDto) {
+  async createLike(body: CreateLikeMusiсDto) {
     return 'This action adds a new musiс';
   }
 
-  deleteLike(id: number) {
+  async deleteLike(id: number) {
     return `This action removes a #${id} musiс`;
   }
 
-  search(query: string) {
+  async search(query: string) {
     return `This action removes a # musiс`;
   }
 
-  createPlaylist(body: CreatePlaylistDto) {
+  async createPlaylist(body: CreatePlaylistDto) {
     return 'zxc'
   }
 
-  addToPlaylist(body: AddToPlayListDto) {
+  async addToPlaylist(body: AddToPlayListDto) {
     return 'zxc'
   }
 }

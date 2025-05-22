@@ -12,14 +12,14 @@ export class UserController {
     return this.userService.create(createUserDto, null);
   }
 
-  @Get('meny')
-  findAMeny() {
-    return this.userService.findMeny();
-  }
-
   @Get('login')
   findByLogin(@Param('login') login: string) {
     return this.userService.findByLogin(login);
+  }
+
+  @Get()
+  findAMeny() {
+    return this.userService.findMeny();
   }
 
   @Get(':id')

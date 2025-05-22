@@ -10,22 +10,22 @@ export class AuthService {
   constructor(private readonly userService: UserService, private readonly jwtService: JwtService) { }
 
   async regisatration(createUserDto: CreateUserDto, ava) {
-    const user_ = await this.userService.findByLogin(createUserDto.email)
+    const user_ = await this.userService.findByLogin(createUserDto.login)
     if (user_) {
       throw new HttpException('Пользователь с таким email существует', HttpStatus.BAD_REQUEST);
     }
 
     const hashPassword = await bcrypt.hash(createUserDto.password, 5)
-    const user = await this.userService.create({ ...createUserDto, password: hashPassword }, ava)
+    const { email, id } = await this.userService.create({ ...createUserDto, password: hashPassword }, ava)
 
-    // return this.generateToken({user.})
+    return this.generateToken({ email, id })
   }
 
   async login(authDto: AuthDto) {
     const user = await this.userService.findByLogin(authDto.email)
-    // if (user && await bcrypt.compare(authDto.password, user.password)) {
-    //   return this.generateToken(user)
-    // }
+    if (user && await bcrypt.compare(authDto.password, user.password)) {
+      return this.generateToken(user)
+    }
 
     throw new HttpException('no', HttpStatus.BAD_REQUEST)
   }
