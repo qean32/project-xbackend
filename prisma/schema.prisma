@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  login      String @unique
+  email      String @unique
+  ava        String
+  password   String
+  closeToken String
+  openToken  String
+
+  createdAt  DateTime @default(now())
+  updateadAt DateTime @updatedAt
+
+  likedMusic    LikeMusic[]
+  addedPlayList PlayList[]
+
+  chat_F Chat[] @relation("user_first")
+  chat_S Chat[] @relation("user_second")
+}
+
+model Message {
+  id Int @id @default(autoincrement())
+
+  hashMessage String
+  idRead      Boolean
+}
+
+model Chat {
+  id         Int    @id @default(autoincrement())
+  closeToken String
+
+  userId_first  User @relation("user_first", fields: [user_first], references: [id])
+  user_first    Int
+  userId_second User @relation("user_second", fields: [user_second], references: [id])
+  user_second   Int
+}
+
+model LikeMusic {
+  id       Int    @id @default(autoincrement())
+  urlMusic String
+
+  userId User @relation(fields: [user], references: [id])
+  user   Int
+}
+
+model PlayList {
+  id Int @id @default(autoincrement())
+
+  name          String
+  urlMusicArray Json   @default("[]")
+  User          User?  @relation(fields: [userId], references: [id])
+  userId        Int?
+}
