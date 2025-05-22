@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { CreateUserDto } from 'src/user/dto/create-user.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('auth')
 export class AuthController {
@@ -13,7 +14,8 @@ export class AuthController {
   }
 
   @Post('registration')
-  registration(@Body() CreateUserDto: CreateUserDto) {
-    return this.authService.registration(CreateUserDto);
+  @UseInterceptors(FileInterceptor('image'))
+  registration(@Body() createUserDto: CreateUserDto, @UploadedFile() ava: any) {
+    return this.authService.regisatration(createUserDto, ava);
   }
 }
